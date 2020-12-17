@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 FILE *fd;
-#define numOfClients 4
+#define numOfClients 2
 
 struct ClientCredentials{
     char name[20];
@@ -13,20 +14,29 @@ struct ClientCredentials{
 void getCredentials (struct ClientCredentials *clientCredentials , int i){
     printf("\nClient Information for Client %d\n-------------------------------\n",i + 1);
     printf("Type your name : ");
-    scanf("%20s" ,clientCredentials->name);
+    scanf("%s" ,clientCredentials->name);
     getchar();
     printf("How old are you : ");
     scanf("%d" ,&clientCredentials->Age);
     getchar();
     printf("Are you Male or Female: ");
-    scanf("%6s" ,clientCredentials->Gender);
+    scanf("%s" ,clientCredentials->Gender);
     getchar();
 }
 
-
+ 
 void printToTxt(struct ClientCredentials *clientCredentials , int i ){
     fprintf(fd,"Client Information for Client %d\n-------------------------------\n" , i + 1);
-    fprintf(fd, "The Client's Name is %-10s who is a %-6s and %d years old \n\n",clientCredentials->name, clientCredentials->Gender, clientCredentials->Age);
+    fprintf(fd, "The Client's Name is ");
+    for (int i = 0; i < strlen(clientCredentials->name); i++){
+       fprintf(fd, "%c" , clientCredentials->name[i]);
+    }
+
+    fprintf(fd, " who is a ");
+    for (int i = 0; i < strlen(clientCredentials->Gender); i++){
+       fprintf(fd, "%c" , clientCredentials->Gender[i]);
+    }
+    fprintf(fd, " and is %d years old \n\n", clientCredentials->Age);
 }
 int main(){
     fd = fopen("Clients_Credentials.txt", "w");
