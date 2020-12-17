@@ -26,8 +26,8 @@ void getCredentials (struct ClientCredentials *clientCredentials , int i){
 
  
 void printToTxt(struct ClientCredentials *clientCredentials , int i ){
-    fprintf(fd,"Client Information for Client %d\n-------------------------------\n" , i + 1);
-    fprintf(fd, "The Client's Name is ");
+    fprintf(fd,"Client Information for Client %d\n----------------------------------\n" , i + 1);
+    fprintf(fd, "The client's name is ");
     for (int i = 0; i < strlen(clientCredentials->name); i++){
        fprintf(fd, "%c" , clientCredentials->name[i]);
     }
